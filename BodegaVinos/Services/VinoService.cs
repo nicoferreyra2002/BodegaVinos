@@ -44,6 +44,12 @@ namespace BodegaVinos.Services
 
         public void RegisterWine(VinoDtos vinoDto)
         {
+            var existingVino = _repository.GetVinoByName(vinoDto.Name);
+            if (existingVino != null)
+            {
+                throw new Exception($"El vino '{vinoDto.Name}' ya está registrado en el inventario.");
+            }
+
             var vino = new Vino
             {
                 Name = vinoDto.Name,
@@ -55,6 +61,7 @@ namespace BodegaVinos.Services
 
             _repository.AddVino(vino);
         }
+
         public void AddStock(string name, int quantity)
         {
             var vino = _repository.GetVinoByName(name);
