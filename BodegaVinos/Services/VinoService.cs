@@ -58,7 +58,7 @@ namespace BodegaVinos.Services
         public void AddStock(string name, int quantity)
         {
             var vino = _repository.GetVinoByName(name);
-            if (name == null)
+            if (name != null)
             {
                 vino.Stock += quantity;
                 _repository.UpdateVino(vino);
