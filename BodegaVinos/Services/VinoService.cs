@@ -42,7 +42,7 @@ namespace BodegaVinos.Services
             };
         }
 
-        public void RegisterWine(VinoDtos vinoDto)
+        public void RegisterVino(VinoDtos vinoDto)
         {
             var existingVino = _repository.GetVinoByName(vinoDto.Name);
             if (existingVino != null)
@@ -65,7 +65,7 @@ namespace BodegaVinos.Services
         public void AddStock(string name, int quantity)
         {
             var vino = _repository.GetVinoByName(name);
-            if (name != null)
+            if (vino != null)
             {
                 vino.Stock += quantity;
                 _repository.UpdateVino(vino);
@@ -81,9 +81,6 @@ namespace BodegaVinos.Services
             throw new NotImplementedException();
         }
 
-        public void RegisterVino(VinoDtos vinoDto)
-        {
-            throw new NotImplementedException();
-        }
+       
     }
 }
